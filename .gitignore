@@ -136,8 +136,7 @@ docs/build/
 # Docker
 .dockerignore
 Dockerfile
-docker-compose.yml
-docker-compose.override.yml
+
 
 # Terraform
 *.tfstate
