@@ -91,7 +91,7 @@ dist
 
 # Gatsby files
 .cache/
-public
+
 
 # Storybook build outputs
 .out
@@ -148,5 +148,17 @@ docker-compose.override.yml
 # Kubernetes
 *.kubeconfig
 
-# Project specific
-# Add any project-specific files or directories here
+
+.venv/
+venv/
+**/.venv/
+**/venv/
+
+# Frontend local files
+frontend/node_modules/
+frontend/.env
+frontend/dist/
+
+# Backend local files
+backend/node_modules/
+backend/.env
