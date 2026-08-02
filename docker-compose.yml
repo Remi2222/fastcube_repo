@@ -1,0 +1,66 @@
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:5000
+    container_name: frontend-app
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - mysql
+  backend:
+    build: ./backend
+    container_name: backend-app
+    ports:
+      - "5000:3001"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env
+
+  chatbot:
+    build: ./fastcube-chatbot
+    container_name: chatbot-service
+    ports:
+      - "8001:8001"
+    env_file:
+      - ./fastcube-chatbot/.env
+    depends_on:
+      - mysql
+  
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fastcube
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+volumes:
+  mysql_data:
