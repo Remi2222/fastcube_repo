@@ -135,7 +135,7 @@ docs/build/
 
 # Docker
 .dockerignore
-Dockerfile
+
 
 
 # Terraform
