@@ -310,4 +310,4 @@ Then restart the application.
 
 # Author
 
-FastCube Development Team
+Maryam Fajri
