@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import { API_BASE_URL } from "../config/api";
 import { 
   FaPlus, FaEdit, FaTrash, FaSearch, FaEye, FaCalendar, FaUser, 
   FaSpinner, FaExclamationTriangle, FaCheckCircle, FaTimes,
@@ -32,7 +34,7 @@ const AdminBlogManager = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/blogs', {
+      const response = await fetch(`${API_BASE_URL}/api/blogs`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -102,8 +104,8 @@ const AdminBlogManager = () => {
       };
 
       const url = editingBlog 
-        ? `http://localhost:5000/api/blogs/${editingBlog.id}`
-        : 'http://localhost:5000/api/blogs';
+        ? `${API_BASE_URL}/api/blogs/${editingBlog.id}`
+        : `${API_BASE_URL}/api/blogs`;
       
       const method = editingBlog ? 'PUT' : 'POST';
       
@@ -151,7 +153,7 @@ const AdminBlogManager = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/blogs/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -173,7 +175,7 @@ const AdminBlogManager = () => {
       const token = localStorage.getItem('token');
       const newStatus = blog.status === 'published' ? 'draft' : 'published';
       
-      const response = await fetch(`http://localhost:5000/api/blogs/${blog.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/blogs/${blog.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

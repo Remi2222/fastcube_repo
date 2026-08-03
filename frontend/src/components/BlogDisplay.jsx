@@ -5,6 +5,7 @@ import {
   FaExclamationTriangle, FaComment, FaRocket, FaLightbulb, 
   FaArrowRight, FaClock, FaBookOpen, FaTags, FaShare
 } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const BlogDisplay = () => {
   const [blogs, setBlogs] = useState([]);
@@ -35,7 +36,7 @@ const BlogDisplay = () => {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/blogs');
+      const response = await fetch(`${API_BASE_URL}/api/blogs`);
       
       if (!response.ok) {
         throw new Error(`Erreur HTTP: ${response.status}`);
@@ -60,7 +61,7 @@ const BlogDisplay = () => {
 
   const fetchStatuses = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/blogs/statuses');
+      const response = await fetch(`${API_BASE_URL}/api/blogs/statuses`);
       
       if (response.ok) {
         const result = await response.json();
@@ -80,7 +81,7 @@ const BlogDisplay = () => {
       const counts = {};
       for (const blog of blogs) {
         console.log(`📖 Blog ${blog.id}: ${blog.title}`);
-        const response = await fetch(`http://localhost:5000/api/commentaires/count/${blog.id}`);
+        const response = await fetch(`${API_BASE_URL}/api/commentaires/count/${blog.id}`);
         if (response.ok) {
           const result = await response.json();
           console.log(`📊 Commentaires pour blog ${blog.id}:`, result.data.count);

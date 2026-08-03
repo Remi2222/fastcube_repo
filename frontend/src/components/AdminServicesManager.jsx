@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaEye, FaSave, FaTimes, FaSearch, FaFilter, FaServer } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const AdminServicesManager = () => {
   const [services, setServices] = useState([]);
@@ -35,7 +36,7 @@ const AdminServicesManager = () => {
   const fetchServices = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/services');
+      const response = await fetch(`${API_BASE_URL}/api/services`);
       const result = await response.json();
       
       if (result.success) {
@@ -54,8 +55,8 @@ const AdminServicesManager = () => {
     e.preventDefault();
     try {
       const url = editingService 
-        ? `http://localhost:5000/api/services/${editingService.id}`
-        : 'http://localhost:5000/api/services';
+        ? `${API_BASE_URL}/api/services/${editingService.id}`
+        : `${API_BASE_URL}/api/services`;
       
       const method = editingService ? 'PUT' : 'POST';
 
@@ -82,7 +83,7 @@ const AdminServicesManager = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer ce service ?')) {
     try {
-      const response = await fetch(`http://localhost:5000/api/services/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/services/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`

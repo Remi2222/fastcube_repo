@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { API_BASE_URL } from "../config/api";
 const AdminTestimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const AdminTestimonials = () => {
       }
 
       console.log('🔍 Récupération des témoignages...');
-      const response = await fetch('http://localhost:5000/api/testimonials', {
+      const response = await fetch(`${API_BASE_URL}/api/testimonials`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ const AdminTestimonials = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:5000/api/testimonials/${id}/status`, {
+      const response = await fetch(`${API_BASE_URL}/api/testimonials/${id}/status`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,

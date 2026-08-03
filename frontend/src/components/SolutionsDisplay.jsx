@@ -7,6 +7,7 @@ import {
   FaCloud, FaUsers, FaServer, FaDatabase, FaLock, FaGlobe, FaMobile,
   FaDesktop, FaTools, FaEye, FaCalendarAlt, FaTag, FaCheck
 } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const SolutionsDisplay = () => {
   const [solutions, setSolutions] = useState([]);
@@ -21,7 +22,7 @@ const SolutionsDisplay = () => {
   const fetchSolutions = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/solutions');
+      const response = await fetch(`${API_BASE_URL}/api/solutions`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -39,7 +40,7 @@ const SolutionsDisplay = () => {
   // Récupérer les catégories
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/solutions/categories');
+      const response = await fetch(`${API_BASE_URL}/api/solutions/categories`);
       if (response.ok) {
         const data = await response.json();
         setCategories(data.data || []);

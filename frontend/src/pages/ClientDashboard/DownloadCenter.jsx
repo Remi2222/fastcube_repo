@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../config/api";
 
 export default function DownloadCenter() {
   const [docs, setDocs] = useState([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/documents/mine", {
+    fetch(`${API_BASE_URL}/api/documents/mine`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())

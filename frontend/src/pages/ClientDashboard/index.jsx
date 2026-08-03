@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaFilter, FaComments, FaClock, FaCheckCircle, FaExclamationTriangle, FaTimes, FaPlus, FaEye, FaComment, FaUser, FaTicketAlt, FaEdit, FaTrash, FaStar } from 'react-icons/fa';
 import TestimonialForm from '../../components/TestimonialForm';
+import { API_BASE_URL } from "../../config/api";
 
 export default function ClientDashboard() {
   const [tickets, setTickets] = useState([]);
@@ -21,7 +22,7 @@ export default function ClientDashboard() {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await fetch("http://localhost:5000/api/users/me", {
+          const response = await fetch(`${API_BASE_URL}/api/users/me`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (response.ok) {
@@ -55,7 +56,7 @@ export default function ClientDashboard() {
           return;
         }
 
-        const res = await fetch("http://localhost:5000/api/tickets/mine", {
+        const res = await fetch(`${API_BASE_URL}/api/tickets/mine`, {
           headers: { 
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -197,7 +198,7 @@ export default function ClientDashboard() {
   const handleUpdateTicket = async (updatedData) => {
     try {
       const token = localStorage.getItem("token") || localStorage.getItem("userToken");
-      const response = await fetch(`http://localhost:5000/api/tickets/${editingTicket.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/${editingTicket.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -233,7 +234,7 @@ export default function ClientDashboard() {
   const handleDeleteTicket = async (ticketId) => {
     try {
       const token = localStorage.getItem("token") || localStorage.getItem("userToken");
-      const response = await fetch(`http://localhost:5000/api/tickets/${ticketId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/${ticketId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaTicketAlt, FaExclamationTriangle, FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
+import { API_BASE_URL } from "../config/api";
 
 
 export default function NewTicket() {
@@ -35,7 +36,7 @@ export default function NewTicket() {
       
       const token = localStorage.getItem('token');
       
-      const response = await fetch('http://localhost:5000/api/tickets/create', {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/create`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

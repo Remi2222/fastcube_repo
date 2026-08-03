@@ -4,6 +4,7 @@ import {
   FaChevronLeft, FaChevronRight, FaExternalLinkAlt,
   FaUsers, FaChartLine, FaShieldAlt, FaLightbulb, FaServer, FaMobile
 } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const Partners = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -27,7 +28,7 @@ const Partners = () => {
     const fetchPartners = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/partenaires/actifs');
+        const response = await fetch(`${API_BASE_URL}/api/partenaires/actifs`);
         
         if (response.ok) {
           const result = await response.json();

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTicketAlt, FaUser, FaEnvelope, FaPhone, FaTrash, FaEye, FaCheck, FaTimes } from 'react-icons/fa';
-
+import { API_BASE_URL } from "../config/api";
 const AdminTickets = () => {
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const AdminTickets = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/tickets/all', {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/all`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ const AdminTickets = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:5000/api/tickets/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -95,7 +95,7 @@ const AdminTickets = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:5000/api/tickets/${id}/status`, {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/${id}/status`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,

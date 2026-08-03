@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaComments, FaComment } from 'react-icons/fa';
+import { API_BASE_URL } from "../../config/api";
 
 export default function CommentCounter({ articleId, initialCount = 0, onCountChange }) {
   const [commentCount, setCommentCount] = useState(initialCount);
@@ -15,7 +16,7 @@ export default function CommentCounter({ articleId, initialCount = 0, onCountCha
       setLoading(true);
       
       // Appel API pour récupérer le nombre de commentaires
-      const response = await fetch(`http://localhost:5000/api/blog/articles/${articleId}/comments/count`);
+      const response = await fetch(`${API_BASE_URL}/api/blog/articles/${articleId}/comments/count`);
       
       if (response.ok) {
         const data = await response.json();

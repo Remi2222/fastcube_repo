@@ -17,7 +17,7 @@ class Tender {
       } = tenderData;
 
       const query = `
-        INSERT INTO tenders (
+        INSERT INTO appels_offres (
           title, description, reference, deadline, budget, status
         ) VALUES (?, ?, ?, ?, ?, ?)
       `;
@@ -64,7 +64,7 @@ class Tender {
           cahier_charges_name,
           created_at,
           updated_at
-        FROM tenders
+        FROM appels_offres
       `;
       
       let params = [];
@@ -105,7 +105,7 @@ class Tender {
           status,
           created_at,
           updated_at
-        FROM tenders
+        FROM appels_offres
         WHERE id = ?
       `;
       
@@ -149,7 +149,7 @@ class Tender {
       values.push(id);
       
       const query = `
-        UPDATE tenders 
+        UPDATE appels_offres 
         SET ${fieldsToUpdate.join(', ')}
         WHERE id = ?
       `;
@@ -171,7 +171,7 @@ class Tender {
     try {
       connection = await pool.getConnection();
       
-      const query = 'DELETE FROM tenders WHERE id = ?';
+      const query = 'DELETE FROM appels_offres WHERE id = ?';
       const [result] = await connection.execute(query, [id]);
       
       return result.affectedRows > 0;
@@ -197,7 +197,7 @@ class Tender {
           SUM(CASE WHEN status = 'closed' THEN 1 ELSE 0 END) as closed,
           SUM(CASE WHEN status = 'awarded' THEN 1 ELSE 0 END) as awarded,
           SUM(CASE WHEN deadline < CURRENT_TIMESTAMP THEN 1 ELSE 0 END) as expired
-        FROM tenders
+        FROM appels_offres
       `;
       
       const [rows] = await connection.execute(query);
@@ -227,7 +227,7 @@ class Tender {
           deadline,
           status,
           created_at
-        FROM tenders
+        FROM appels_offres
         ORDER BY created_at DESC
         LIMIT ?
       `;

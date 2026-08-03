@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../config/api";
 
 export default function DownloadsSection() {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:5000/api/client/files", {
+    fetch(`${API_BASE_URL}/api/client/files`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())

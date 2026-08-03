@@ -3,6 +3,7 @@ import {
   FaEye, FaComments, FaHeart, FaUsers, FaRocket, 
   FaLightbulb, FaChartLine, FaStar
 } from 'react-icons/fa';
+import { API_BASE_URL } from "../../config/api";
 
 export default function BlogStats() {
   const [stats, setStats] = useState({
@@ -24,7 +25,7 @@ export default function BlogStats() {
       setLoading(true);
       
       // Récupérer depuis l'API
-      const response = await fetch('http://localhost:5000/api/blog/stats');
+      const response = await fetch(`${API_BASE_URL}/api/blog/stats`);
       
       if (response.ok) {
         const data = await response.json();

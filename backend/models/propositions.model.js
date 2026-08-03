@@ -65,7 +65,7 @@ class Proposition {
           u.first_name as user_first_name,
           u.last_name as user_last_name
         FROM propositions p
-        LEFT JOIN tenders t ON p.tender_id = t.id
+        LEFT JOIN appels_offres t ON p.tender_id = t.id
         LEFT JOIN users u ON p.user_id = u.id
         ORDER BY p.updated_at DESC
       `;
@@ -99,7 +99,7 @@ class Proposition {
           t.title as tender_title,
           t.id as tender_reference
         FROM propositions p
-        LEFT JOIN tenders t ON p.tender_id = t.id
+        LEFT JOIN appels_offres t ON p.tender_id = t.id
         WHERE p.user_id = ?
         ORDER BY p.updated_at DESC
       `;
@@ -137,7 +137,7 @@ class Proposition {
           u.last_name as user_last_name,
           u.name as user_prenom
         FROM propositions p
-        LEFT JOIN tenders t ON p.tender_id = t.id
+        LEFT JOIN appels_offres t ON p.tender_id = t.id
         LEFT JOIN users u ON p.user_id = u.id
         WHERE p.id = ?
       `;
@@ -247,7 +247,7 @@ class Proposition {
           u.first_name as user_first_name,
           u.last_name as user_last_name
         FROM propositions p
-        LEFT JOIN tenders t ON p.tender_id = t.id
+        LEFT JOIN appels_offres t ON p.tender_id = t.id
         LEFT JOIN users u ON p.user_id = u.id
         WHERE 1=1
       `;

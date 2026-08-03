@@ -167,7 +167,7 @@ npm start
 API URL:
 
 ```
-http://localhost:5000
+${API_BASE_URL}
 ```
 
 ---
@@ -221,7 +221,7 @@ frontend/.env
 Example:
 
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=${API_BASE_URL}
 ```
 
 ---

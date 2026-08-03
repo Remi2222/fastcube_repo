@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 import { useAuth } from '../contexts/AuthContext';
 import CommentairesSection from './CommentairesSection';
+import { API_BASE_URL } from "../config/api";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ const BlogDetail = () => {
   const fetchBlog = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/blogs/${id}`);
+      const response = await fetch(`${API_BASE_URL}/api/blogs/${id}`);
       
       if (!response.ok) {
         throw new Error(`Erreur HTTP: ${response.status}`);
@@ -100,7 +101,7 @@ const BlogDetail = () => {
   // Incrémenter les vues
   const incrementViews = async () => {
     try {
-      await fetch(`http://localhost:5000/api/blogs/${id}/view`, {
+      await fetch(`${API_BASE_URL}/api/blogs/${id}/view`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

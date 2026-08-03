@@ -3,6 +3,7 @@ import {
   FaPlus, FaEdit, FaTrash, FaSearch, FaEye, FaGlobe, FaBuilding, 
   FaCalendar, FaStar, FaSpinner, FaExclamationTriangle, FaCheckCircle 
 } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const AdminPartenairesManager = () => {
   const [partenaires, setPartenaires] = useState([]);
@@ -31,7 +32,7 @@ const AdminPartenairesManager = () => {
       console.log('🔍 Token présent:', !!token);
       
       console.log('🔍 Récupération des partenaires...');
-      const response = await fetch('http://localhost:5000/api/partenaires', {
+      const response = await fetch(`${API_BASE_URL}/api/partenaires`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -96,8 +97,8 @@ const AdminPartenairesManager = () => {
       setError(null);
       const token = localStorage.getItem('token');
       const url = editingPartenaire 
-        ? `http://localhost:5000/api/partenaires/${editingPartenaire.id}`
-        : 'http://localhost:5000/api/partenaires';
+        ? `${API_BASE_URL}/api/partenaires/${editingPartenaire.id}`
+        : `${API_BASE_URL}/api/partenaires`;
       
       const method = editingPartenaire ? 'PUT' : 'POST';
       
@@ -146,7 +147,7 @@ const AdminPartenairesManager = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/partenaires/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/partenaires/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

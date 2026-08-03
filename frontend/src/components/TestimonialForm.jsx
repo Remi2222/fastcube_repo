@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const TestimonialForm = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const TestimonialForm = () => {
       const token = localStorage.getItem('token') || localStorage.getItem('userToken');
       if (!token) return;
 
-      const response = await fetch('http://localhost:5000/api/testimonials/my', {
+      const response = await fetch(`${API_BASE_URL}/api/testimonials/my`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -61,8 +62,8 @@ const TestimonialForm = () => {
       }
 
       const url = existingTestimonial 
-        ? 'http://localhost:5000/api/testimonials/my'
-        : 'http://localhost:5000/api/testimonials';
+        ? `${API_BASE_URL}/api/testimonials/my`
+        : `${API_BASE_URL}/api/testimonials`;
       
       const method = existingTestimonial ? 'PUT' : 'POST';
 

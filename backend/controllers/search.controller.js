@@ -44,7 +44,7 @@ class SearchController {
           `SELECT 'testimonial' as type, id, CONCAT(user_name, ' - ', SUBSTRING(message, 1, 100)) as title,
                   message as description, 'Témoignages' as category, CONCAT('appel-offre?tenderId=', id) as url,
                   JSON_ARRAY('appel d\'offre', category) as tags, created_at as date, 'FASTCUBE' as author, 90 as relevance
-           FROM tenders
+           FROM appels_offres
            WHERE title LIKE ? OR description LIKE ? OR category LIKE ?
            ORDER BY created_at DESC
            LIMIT ?`,
@@ -143,7 +143,7 @@ class SearchController {
       const [servicesCount] = await connection.execute('SELECT COUNT(*) as count FROM services');
       const [articlesCount] = await connection.execute('SELECT COUNT(*) as count FROM articles WHERE status = "published"');
       const [testimonialsCount] = await connection.execute('SELECT COUNT(*) as count FROM testimonials WHERE approved = 1');
-      const [tendersCount] = await connection.execute('SELECT COUNT(*) as count FROM tenders');
+      const [tendersCount] = await connection.execute('SELECT COUNT(*) as count FROM appels_offres');
 
       await connection.end();
 

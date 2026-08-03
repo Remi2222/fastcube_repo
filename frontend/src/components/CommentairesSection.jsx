@@ -3,6 +3,7 @@ import {
   FaComment, FaPaperPlane, FaThumbsUp, FaReply, 
   FaEdit, FaTrash, FaUser, FaClock, FaSpinner 
 } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const CommentairesSection = ({ blogId, isAuthenticated, currentUser }) => {
   const [commentaires, setCommentaires] = useState([]);
@@ -30,7 +31,7 @@ const CommentairesSection = ({ blogId, isAuthenticated, currentUser }) => {
   const fetchCommentaires = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/commentaires/blog/${blogId}`);
+      const response = await fetch(`${API_BASE_URL}/api/commentaires/blog/${blogId}`);
       
       if (response.ok) {
         const data = await response.json();
@@ -91,7 +92,7 @@ const CommentairesSection = ({ blogId, isAuthenticated, currentUser }) => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/commentaires', {
+      const response = await fetch(`${API_BASE_URL}/api/commentaires`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

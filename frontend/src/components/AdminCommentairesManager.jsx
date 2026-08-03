@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from "../config/api";
 import { 
   FaComment, FaUser, FaEnvelope, FaClock, FaCheck, FaTimes, 
   FaTrash, FaEye, FaSpinner, FaExclamationTriangle, FaInfoCircle,
@@ -21,7 +22,7 @@ const AdminCommentairesManager = () => {
   const fetchCommentaires = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/commentaires/admin/all', {
+      const response = await fetch(`${API_BASE_URL}/api/commentaires/admin/all`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -85,7 +86,7 @@ const AdminCommentairesManager = () => {
   const approveCommentaire = async (id) => {
     try {
       setActionLoading(true);
-      const response = await fetch(`http://localhost:5000/api/commentaires/admin/${id}/approve`, {
+      const response = await fetch(`${API_BASE_URL}/api/commentaires/admin/${id}/approve`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -108,7 +109,7 @@ const AdminCommentairesManager = () => {
   const rejectCommentaire = async (id) => {
     try {
       setActionLoading(true);
-      const response = await fetch(`http://localhost:5000/api/commentaires/admin/${id}/reject`, {
+      const response = await fetch(`${API_BASE_URL}/api/commentaires/admin/${id}/reject`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -135,7 +136,7 @@ const AdminCommentairesManager = () => {
 
     try {
       setActionLoading(true);
-      const response = await fetch(`http://localhost:5000/api/commentaires/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/commentaires/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

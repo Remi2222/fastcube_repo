@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ChatbotWidget from '../components/ChatbotWidget';
 import { Database, User, MessageSquare, Settings, BarChart3 } from 'lucide-react';
+import { API_BASE_URL } from "../config/api";
 
 const ChatbotTest = () => {
   const [userId, setUserId] = useState('1'); 
@@ -23,7 +24,7 @@ const ChatbotTest = () => {
   
   const loadUserStats = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/chatbot/stats/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/chatbot/stats/${userId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -41,7 +42,7 @@ const ChatbotTest = () => {
   
   const loadUserPreferences = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/chatbot/preferences/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/chatbot/preferences/${userId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

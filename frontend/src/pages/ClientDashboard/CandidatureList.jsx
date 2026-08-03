@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../config/api";
 
 export default function CandidatureList() {
   const [candidatures, setCandidatures] = useState([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/candidatures/mine", {
+    fetch(`${API_BASE_URL}/api/candidatures/mine`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())

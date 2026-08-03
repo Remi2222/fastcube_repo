@@ -6,7 +6,7 @@ class PartenaireModel {
     try {
       const [rows] = await pool.execute(`
         SELECT * FROM partenaires 
-        ORDER BY name ASC
+        ORDER BY nom ASC
       `);
       return { success: true, data: Array.isArray(rows) ? rows : [] };
     } catch (error) {
@@ -38,8 +38,8 @@ class PartenaireModel {
     try {
       const [rows] = await pool.execute(`
         SELECT * FROM partenaires 
-        WHERE status = 'active' 
-        ORDER BY name ASC
+        WHERE statut = 'actif' 
+        ORDER BY nom ASC
       `);
       return { success: true, data: Array.isArray(rows) ? rows : [] };
     } catch (error) {
@@ -124,7 +124,7 @@ class PartenaireModel {
       const [rows] = await pool.execute(`
         SELECT * FROM partenaires 
         WHERE name LIKE ? OR description LIKE ?
-        ORDER BY name ASC
+        ORDER BY nom  ASC
       `, [`%${searchTerm}%`, `%${searchTerm}%`]);
       
       return { success: true, data: Array.isArray(rows) ? rows : [] };

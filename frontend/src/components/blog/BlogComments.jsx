@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from "../config/api";
 import { 
   FaUserCircle, FaHeart, FaReply, FaThumbsUp, FaThumbsDown, 
   FaEdit, FaTrash, FaClock, FaUser, FaCheckCircle
@@ -21,7 +22,7 @@ export default function BlogComments({ articleId, currentUser, onCommentCountCha
   const fetchComments = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/blog/articles/${articleId}/comments`);
+      const response = await fetch(`${API_BASE_URL}/api/blog/articles/${articleId}/comments`);
       const data = await response.json();
       
       if (data.success) {
@@ -72,7 +73,7 @@ export default function BlogComments({ articleId, currentUser, onCommentCountCha
 
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/blog/articles/${articleId}/comments`, {
+      const response = await fetch(`${API_BASE_URL}/api/blog/articles/${articleId}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -135,7 +136,7 @@ export default function BlogComments({ articleId, currentUser, onCommentCountCha
     if (!currentUser) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/blog/comments/${commentId}/like`, {
+      const response = await fetch(`${API_BASE_URL}/api/blog/comments/${commentId}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -188,7 +189,7 @@ export default function BlogComments({ articleId, currentUser, onCommentCountCha
     if (!currentUser) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/blog/comments/${commentId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/blog/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

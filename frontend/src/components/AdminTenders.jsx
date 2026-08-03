@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaEye, FaCalendarAlt, FaMoneyBillWave, FaTag } from 'react-icons/fa';
-
+import { API_BASE_URL } from "../config/api";
 const AdminTenders = () => {
   const [tenders, setTenders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ const AdminTenders = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/tenders', {
+      const response = await fetch(`${API_BASE_URL}/api/tenders`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -94,8 +94,8 @@ const AdminTenders = () => {
       }
 
       const url = editingTender 
-        ? `http://localhost:5000/api/tenders/${editingTender.id}`
-        : 'http://localhost:5000/api/tenders';
+        ? `${API_BASE_URL}/api/tenders/${editingTender.id}`
+        : `${API_BASE_URL}/api/tenders`;
       
       const method = editingTender ? 'PUT' : 'POST';
 
@@ -149,7 +149,7 @@ const AdminTenders = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:5000/api/tenders/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tenders/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

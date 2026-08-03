@@ -8,6 +8,7 @@ import {
   FaDesktop, FaTools, FaEye, FaCalendarAlt, FaTag, FaCheck,
   FaHeadset, FaEnvelope, FaPhone, FaMapMarkerAlt, FaExternalLinkAlt
 } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const SolutionDetail = () => {
   const { id } = useParams();
@@ -21,7 +22,7 @@ const SolutionDetail = () => {
   const fetchSolution = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/solutions/${id}`);
+      const response = await fetch(`${API_BASE_URL}/api/solutions/${id}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -43,7 +44,7 @@ const SolutionDetail = () => {
   
   const fetchRelatedSolutions = async (category, currentId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/solutions?category=${category}`);
+      const response = await fetch(`${API_BASE_URL}/api/solutions?category=${category}`);
       if (response.ok) {
         const data = await response.json();
         const related = (data.data || []).filter(s => s.id !== currentId).slice(0, 3);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from "../config/api";
 
 const AdminSolutionsManager = () => {
   const [solutions, setSolutions] = useState([]);
@@ -27,7 +28,7 @@ const AdminSolutionsManager = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/solutions', {
+      const response = await fetch(`${API_BASE_URL}/api/solutions`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -129,8 +130,8 @@ const AdminSolutionsManager = () => {
       };
 
       const url = editingSolution 
-        ? `http://localhost:5000/api/solutions/${editingSolution.id}`
-        : 'http://localhost:5000/api/solutions';
+        ? `${API_BASE_URL}/api/solutions/${editingSolution.id}`
+        : `${API_BASE_URL}/api/solutions`;
       
       const method = editingSolution ? 'PUT' : 'POST';
 
@@ -176,7 +177,7 @@ const AdminSolutionsManager = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/solutions/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/solutions/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

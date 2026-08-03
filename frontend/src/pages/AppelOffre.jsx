@@ -24,6 +24,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 import { useAuth } from '../contexts/AuthContext';
 import { validateForm } from '../utils/formValidation';
+import { API_BASE_URL } from "../config/api";
 
 export default function AppelOffre() {
   const { lang, getTranslation } = useLanguage();
@@ -79,7 +80,7 @@ export default function AppelOffre() {
       setLoading(true);
       setError('');
       
-      const response = await fetch('http://localhost:5000/api/tenders');
+      const response = await fetch(`${API_BASE_URL}/api/tenders`);
       
       if (!response.ok) {
         throw new Error(`Erreur HTTP: ${response.status}`);
@@ -209,7 +210,7 @@ export default function AppelOffre() {
     
     try {
       
-      const response = await fetch('http://localhost:5000/api/propositions', {
+      const response = await fetch(`${API_BASE_URL}/api/propositions`, {
         method: 'POST',
         body: proposalData
       });
@@ -247,7 +248,7 @@ Nous vous contacterons dans les plus brefs délais pour la suite du processus.`)
       
       if (tender.cahier_charges_path && tender.cahier_charges_name) {
         
-        const response = await fetch(`http://localhost:5000/api/tenders/${tender.id}/download`);
+        const response = await fetch(`${API_BASE_URL}/api/tenders/${tender.id}/download`);
         
         if (response.ok) {
           

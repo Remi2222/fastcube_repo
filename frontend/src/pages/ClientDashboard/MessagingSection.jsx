@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../config/api";
 
 export default function MessagingSection() {
   const [messages, setMessages] = useState([]);
@@ -6,7 +7,7 @@ export default function MessagingSection() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/client/messages", {
+    fetch(`${API_BASE_URL}/api/client/messages`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -16,7 +17,7 @@ export default function MessagingSection() {
 
   const handleSend = async () => {
     if (!input.trim()) return;
-          const res = await fetch("http://localhost:5000/api/client/messages", {
+          const res = await fetch(`${API_BASE_URL}/api/client/messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

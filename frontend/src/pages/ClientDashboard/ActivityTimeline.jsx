@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../config/api";
 
 export default function ActivityTimeline() {
   const [activities, setActivities] = useState([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/client/activity", {
+    fetch(`${API_BASE_URL}/api/client/activity`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())

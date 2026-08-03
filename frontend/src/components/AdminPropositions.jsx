@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaEye, FaTrash, FaCheck, FaTimes, FaClock, FaDownload } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 export default function AdminPropositions() {
   const [propositions, setPropositions] = useState([]);
@@ -24,7 +25,7 @@ export default function AdminPropositions() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/propositions/all', {
+      const response = await fetch(`${API_BASE_URL}/api/propositions/all`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -52,7 +53,7 @@ export default function AdminPropositions() {
   const handleStatusUpdate = async (proposalId, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/propositions/${proposalId}/status`, {
+      const response = await fetch(`${API_BASE_URL}/api/propositions/${proposalId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +86,7 @@ export default function AdminPropositions() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/propositions/${proposalId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/propositions/${proposalId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -105,7 +106,7 @@ export default function AdminPropositions() {
   const handleDownloadFile = async (proposalId, fileName, fileIndex) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/propositions/${proposalId}/files/${fileIndex}`, {
+      const response = await fetch(`${API_BASE_URL}/api/propositions/${proposalId}/files/${fileIndex}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

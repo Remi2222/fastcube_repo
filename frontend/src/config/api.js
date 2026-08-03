@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const checkApiHealth = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/health`);

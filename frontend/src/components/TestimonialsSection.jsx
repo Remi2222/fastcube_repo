@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const TestimonialsSection = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -15,7 +16,7 @@ const TestimonialsSection = () => {
   const fetchTestimonials = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/testimonials/approved?limit=6');
+      const response = await fetch(`${API_BASE_URL}/api/testimonials/approved?limit=6`);
       const data = await response.json();
       
       if (data.success) {

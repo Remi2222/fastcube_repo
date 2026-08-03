@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { X, Send, Bot, User, Loader, MessageSquare, Database, Wifi, WifiOff, Lock, Trash2 } from 'lucide-react';
+import { API_BASE_URL } from "../config/api";
 
 const ChatbotWidget = ({ 
   variant = 'enhanced', 
@@ -350,7 +351,7 @@ const ChatbotWidget = ({
   // Fonction pour réinitialiser la conversation
   const resetConversation = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/chatbot/reset-conversation', {
+      const response = await fetch(`${API_BASE_URL}/api/chatbot/reset-conversation`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

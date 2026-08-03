@@ -9,6 +9,7 @@ import {
 import { useLanguage } from '../contexts/LanguageContext';
 import { getTranslation } from '../utils/translations';
 import { validateForm } from '../utils/formValidation';
+import { API_BASE_URL } from "../config/api";
 
 
 const getRequestCategories = (lang) => [
@@ -227,7 +228,7 @@ export default function Contact() {
       };
 
       
-      const response = await fetch('http://localhost:5000/api/contacts/create', {
+      const response = await fetch(`${API_BASE_URL}/api/contacts/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

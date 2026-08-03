@@ -17,6 +17,7 @@ import AdminPartenairesManager from './AdminPartenairesManager';
 import AdminBlogManager from './AdminBlogManager';
 import AdminServicesManager from './AdminServicesManager';
 import AdminSolutionsManager from './AdminSolutionsManager';
+import { API_BASE_URL } from "../config/api";
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -73,7 +74,7 @@ function AdminDashboard() {
 
     // Récupérer les vraies données de l'utilisateur admin depuis la base de données
     try {
-      const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -157,7 +158,7 @@ function AdminDashboard() {
 
 
       // Récupérer les statistiques
-      const statsResponse = await fetch('http://localhost:5000/api/dashboard/stats', {
+      const statsResponse = await fetch(`${API_BASE_URL}/api/dashboard/stats`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -174,7 +175,7 @@ function AdminDashboard() {
       }
 
       // Récupérer les tickets récents
-      const ticketsResponse = await fetch('http://localhost:5000/api/dashboard/recent-tickets?limit=4', {
+      const ticketsResponse = await fetch(`${API_BASE_URL}/api/dashboard/recent-tickets?limit=4`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -189,7 +190,7 @@ function AdminDashboard() {
       }
 
       // Récupérer les propositions récentes
-      const propositionsResponse = await fetch('http://localhost:5000/api/propositions/all', {
+      const propositionsResponse = await fetch(`${API_BASE_URL}/api/propositions/all`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -205,7 +206,7 @@ function AdminDashboard() {
 
       // Récupérer les témoignages
       console.log('🔍 Récupération des témoignages...');
-      const testimonialsResponse = await fetch('http://localhost:5000/api/testimonials', {
+      const testimonialsResponse = await fetch(`${API_BASE_URL}/api/testimonials`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -228,7 +229,7 @@ function AdminDashboard() {
 
       // Récupérer les partenaires
       console.log('🔍 Récupération des partenaires...');
-      const partnersResponse = await fetch('http://localhost:5000/api/partenaires', {
+      const partnersResponse = await fetch(`${API_BASE_URL}/api/partenaires`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

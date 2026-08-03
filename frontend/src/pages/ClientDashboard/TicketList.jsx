@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaTicketAlt, FaClock, FaExclamationTriangle, FaCheckCircle, FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../config/api";
 
 export default function TicketList() {
   const [tickets, setTickets] = useState([]);
@@ -17,7 +18,7 @@ export default function TicketList() {
   const fetchTickets = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/api/tickets/mine", {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/mine`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -85,7 +86,7 @@ export default function TicketList() {
 
   const handleUpdateTicket = async (updatedData) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tickets/${editingTicket.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/${editingTicket.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +115,7 @@ export default function TicketList() {
 
   const handleDeleteTicket = async (ticketId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tickets/${ticketId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/${ticketId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

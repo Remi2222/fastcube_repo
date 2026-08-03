@@ -10,6 +10,7 @@ import DarkModeToggle from '../components/DarkModeToggle';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { API_BASE_URL } from "../config/api";
 
 export default function AdminAccount() {
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ export default function AdminAccount() {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/users/me', {
+      const response = await fetch(`${API_BASE_URL}/api/users/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -94,7 +95,7 @@ export default function AdminAccount() {
       const token = localStorage.getItem('token');
       console.log('📝 Envoi des données de mise à jour:', editForm);
       
-      const response = await fetch('http://localhost:5000/api/users/update', {
+      const response = await fetch(`${API_BASE_URL}/api/users/update`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -130,7 +131,7 @@ export default function AdminAccount() {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/users/change-password', {
+      const response = await fetch(`${API_BASE_URL}/api/users/change-password`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

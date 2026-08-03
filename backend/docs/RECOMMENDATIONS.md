@@ -53,7 +53,7 @@ Récupérer les recommandations pour un utilisateur.
 
 **Exemple :**
 ```bash
-curl "http://localhost:5000/api/recommendations/user_1?algorithm=hybrid&limit=5"
+curl "${API_BASE_URL}/api/recommendations/user_1?algorithm=hybrid&limit=5"
 ```
 
 **Réponse :**
@@ -175,12 +175,12 @@ node backend/scripts/test-recommendations.js
 
 ```bash
 # 1. Enregistrer une action
-curl -X POST http://localhost:5000/api/recommendations/actions \
+curl -X POST ${API_BASE_URL}/api/recommendations/actions \
   -H "Content-Type: application/json" \
   -d '{"user_id":"user_1","action_type":"view","item_id":1}'
 
 # 2. Récupérer les recommandations
-curl "http://localhost:5000/api/recommendations/user_1?algorithm=hybrid&limit=5"
+curl "${API_BASE_URL}/api/recommendations/user_1?algorithm=hybrid&limit=5"
 ```
 
 ## Personnalisation

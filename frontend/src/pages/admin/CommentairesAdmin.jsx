@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { API_BASE_URL } from "../../config/api";
 
 const CommentairesAdmin = () => {
   const { user } = useAuth();
@@ -12,7 +13,7 @@ const CommentairesAdmin = () => {
   const fetchCommentaires = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/commentaires/admin/all');
+      const response = await fetch(`${API_BASE_URL}/api/commentaires/admin/all`);
       
       if (response.ok) {
         const data = await response.json();
@@ -30,7 +31,7 @@ const CommentairesAdmin = () => {
   
   const approveCommentaire = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/commentaires/admin/${id}/approve`, {
+      const response = await fetch(`${API_BASE_URL}/api/commentaires/admin/${id}/approve`, {
         method: 'PUT'
       });
       
@@ -47,7 +48,7 @@ const CommentairesAdmin = () => {
   
   const rejectCommentaire = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/commentaires/admin/${id}/reject`, {
+      const response = await fetch(`${API_BASE_URL}/api/commentaires/admin/${id}/reject`, {
         method: 'PUT'
       });
       
@@ -65,7 +66,7 @@ const CommentairesAdmin = () => {
   const deleteCommentaire = async (id) => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/commentaires/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/commentaires/${id}`, {
           method: 'DELETE'
         });
         

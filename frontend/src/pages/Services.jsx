@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import RecommendationsSection from '../components/RecommendationsSection';
+import { API_BASE_URL } from "../config/api";
 
 
 const Services = () => {
@@ -37,7 +38,7 @@ const Services = () => {
   const fetchServices = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/services');
+      const response = await fetch(`${API_BASE_URL}/api/services`);
       
       if (!response.ok) {
         if (response.status === 0 || response.status >= 500) {
@@ -64,7 +65,7 @@ const Services = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/services/categories');
+      const response = await fetch(`${API_BASE_URL}/api/services/categories`);
       
       if (response.ok) {
         const result = await response.json();

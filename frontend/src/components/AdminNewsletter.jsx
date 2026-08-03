@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaEnvelope, FaUsers, FaChartLine, FaRobot, FaClock, FaPaperPlane } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 const AdminNewsletter = () => {
   const [subscribers, setSubscribers] = useState([]);
@@ -28,7 +29,7 @@ const AdminNewsletter = () => {
       }
 
       // Récupérer les abonnés
-      const subscribersResponse = await fetch('http://localhost:5000/api/newsletter/subscribers', {
+      const subscribersResponse = await fetch(`${API_BASE_URL}/api/newsletter/subscribers`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -42,7 +43,7 @@ const AdminNewsletter = () => {
       const subscribersData = await subscribersResponse.json();
       
       // Récupérer les statistiques
-      const statsResponse = await fetch('http://localhost:5000/api/newsletter/stats', {
+      const statsResponse = await fetch(`${API_BASE_URL}/api/newsletter/stats`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -71,7 +72,7 @@ const AdminNewsletter = () => {
     try {
       setLoading(true);
       
-      const response = await fetch('http://localhost:5000/api/newsletter/generate-content', {
+      const response = await fetch(`${API_BASE_URL}/api/newsletter/generate-content`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +104,7 @@ const AdminNewsletter = () => {
     try {
       setLoading(true);
       
-      const response = await fetch('http://localhost:5000/api/newsletter/send', {
+      const response = await fetch(`${API_BASE_URL}/api/newsletter/send`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -136,7 +137,7 @@ const AdminNewsletter = () => {
     try {
       setLoading(true);
       
-      const response = await fetch('http://localhost:5000/api/newsletter/schedule', {
+      const response = await fetch(`${API_BASE_URL}/api/newsletter/schedule`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

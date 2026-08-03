@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTicketAlt, FaPlus, FaClock, FaExclamationTriangle, FaEye, FaFilter, FaSearch } from 'react-icons/fa';
 import TicketList from './ClientDashboard/TicketList';
+import { API_BASE_URL } from "../config/api";
 
 export default function MyTickets() {
   const [userData, setUserData] = useState(null);
@@ -14,7 +15,7 @@ export default function MyTickets() {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/users/me", {
+      const response = await fetch(`${API_BASE_URL}/api/users/me`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'

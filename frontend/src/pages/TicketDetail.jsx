@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaComment, FaUser, FaCalendarAlt } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 
 export default function TicketDetail() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ export default function TicketDetail() {
         return;
       }
 
-      const response = await fetch(`http://localhost:5000/api/tickets/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaPhone, FaMapMarkerAlt, FaGlobe, FaCalendarAlt } from "react-icons/fa";
+import { API_BASE_URL } from "../../config/api";
 
 export default function ProfileOverview() {
   const [user, setUser] = useState(null);
@@ -9,7 +10,7 @@ export default function ProfileOverview() {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:5000/api/users/me", {
+        const res = await fetch(`${API_BASE_URL}/api/users/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.ok) {

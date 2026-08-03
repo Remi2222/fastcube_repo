@@ -14,6 +14,7 @@ import { useNotifications } from '../contexts/NotificationContext';
 import IntelligentSearch from './IntelligentSearch';
 import NotificationPanel from './NotificationPanel';
 import '../styles/navbar-modern.css';
+import { API_BASE_URL } from "../config/api";
 
 export default function HeaderFastCube() {
   const [open, setOpen] = useState(false);
@@ -64,7 +65,7 @@ export default function HeaderFastCube() {
       if (isLoggedIn) {
         try {
           const token = localStorage.getItem('token');
-          const response = await fetch('http://localhost:5000/api/users/me', {
+          const response = await fetch(`${API_BASE_URL}/api/users/me`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           

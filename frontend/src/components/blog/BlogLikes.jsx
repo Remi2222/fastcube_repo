@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaHeart, FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
+import { API_BASE_URL } from "../config/api";
 import { Button } from '../ui';
 
 export default function BlogLikes({ articleId, currentUser, initialLikes = 0, initialDislikes = 0 }) {
@@ -18,7 +19,7 @@ export default function BlogLikes({ articleId, currentUser, initialLikes = 0, in
 
   const fetchUserLikeStatus = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/blog/articles/${articleId}/like-status`, {
+      const response = await fetch(`${API_BASE_URL}/api/blog/articles/${articleId}/like-status`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -46,7 +47,7 @@ export default function BlogLikes({ articleId, currentUser, initialLikes = 0, in
     try {
       setLoading(true);
       
-      const response = await fetch(`http://localhost:5000/api/blog/articles/${articleId}/like`, {
+      const response = await fetch(`${API_BASE_URL}/api/blog/articles/${articleId}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
