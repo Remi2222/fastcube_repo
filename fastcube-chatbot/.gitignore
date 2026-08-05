@@ -259,11 +259,7 @@ tmp/
 *.tmp
 *.temp
 
-# Model files
-models/
-*.model
-*.bin
-*.safetensors
+
 
 # API keys and secrets
 .env.local
@@ -292,9 +288,7 @@ yarn-error.log*
 
 # Docker
 .dockerignore
-Dockerfile
-docker-compose.yml
-docker-compose.override.yml
+
 
 # Terraform
 *.tfstate
