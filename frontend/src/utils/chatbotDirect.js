@@ -1,8 +1,8 @@
-
+import { CHATBOT_BASE_URL } from '../config/api';
 export const CHATBOT_DIRECT_CONFIG = {
   
   useDirectMode: true,
-  fallbackApiUrl: 'http://localhost:8001',
+  fallbackApiUrl: CHATBOT_BASE_URL,
   endpoints: {
     chat: '/chat',
     health: '/health',

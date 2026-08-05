@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaHeart, FaSmile, FaFrown, FaAngry, FaSurprise, FaSadTear, FaMeh, FaExclamationTriangle, FaClock, FaShieldAlt, FaBrain, FaChartLine } from 'react-icons/fa';
-
+import { CHATBOT_BASE_URL } from '../config/api';
 const EmotionDisplay = ({ emotionData, showDetails = false, className = '', onAnalyzeSentiment }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -20,7 +20,7 @@ const EmotionDisplay = ({ emotionData, showDetails = false, className = '', onAn
     
     setIsAnalyzing(true);
     try {
-      const response = await fetch('http://localhost:8001/analyze', {
+      const response = await fetch('${CHATBOT_BASE_URL}/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

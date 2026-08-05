@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, Bot, User, Loader, Brain, Zap, Target, TrendingUp } from 'lucide-react';
-
+import { CHATBOT_BASE_URL } from '../config/api';
 const ClaudeStyleChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -79,7 +79,7 @@ const ClaudeStyleChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8001/chatbot/claude', {
+      const response = await fetch('${CHATBOT_BASE_URL}/chatbot/claude', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const ClaudeStyleChatbot = () => {
   // Fonction pour charger les insights
   const loadInsights = async () => {
     try {
-      const response = await fetch('http://localhost:8001/chatbot/claude/insights');
+      const response = await fetch('${CHATBOT_BASE_URL}/chatbot/claude/insights');
       if (response.ok) {
         const data = await response.json();
         setInsights(data.data);

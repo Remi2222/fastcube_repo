@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { X, Send, Bot, User, Loader, MessageSquare, Database, Wifi, WifiOff, Lock, Trash2 } from 'lucide-react';
 import { API_BASE_URL } from "../config/api";
-
+import { CHATBOT_BASE_URL } from '../config/api';
 const ChatbotWidget = ({ 
   variant = 'enhanced', 
   userId = null, 
@@ -79,7 +79,7 @@ const ChatbotWidget = ({
   useEffect(() => {
     const checkOnlineStatus = async () => {
       try {
-        const response = await fetch('http://localhost:8001/chatbot/health', {
+        const response = await fetch('${CHATBOT_BASE_URL}/chatbot/health', {
           method: 'GET',
           timeout: 5000
         });
@@ -116,7 +116,7 @@ const ChatbotWidget = ({
       console.log(`🔄 Chargement des messages pour la session: ${sessionId}`);
       addLog('info', `Chargement des messages pour la session: ${sessionId}`);
       
-      const response = await fetch(`http://localhost:8001/chatbot/messages/session/${sessionId}`, {
+      const response = await fetch(`${CHATBOT_BASE_URL}/chatbot/messages/session/${sessionId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -274,7 +274,7 @@ const ChatbotWidget = ({
   // Fonction pour charger l'historique des messages
   const loadMessageHistory = async () => {
     try {
-      const response = await fetch(`http://localhost:8001/chatbot/message/${currentUserId}`, {
+      const response = await fetch(`${CHATBOT_BASE_URL}/chatbot/message/${currentUserId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -313,7 +313,7 @@ const ChatbotWidget = ({
     if (!currentUserId) return;
 
     try {
-      const response = await fetch('http://localhost:8001/chatbot/message', {
+      const response = await fetch('${CHATBOT_BASE_URL}/chatbot/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -410,7 +410,7 @@ const ChatbotWidget = ({
     addLog('info', 'Envoi du message au chatbot...', { message: inputMessage });
 
     try {
-      const response = await fetch('http://localhost:8001/chatbot/generate', {
+      const response = await fetch('${CHATBOT_BASE_URL}/chatbot/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

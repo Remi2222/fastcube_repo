@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Bot, User, Loader, MessageSquare, Settings, Minimize2, Maximize2 } from 'lucide-react';
-
+import { CHATBOT_BASE_URL } from '../config/api';
 const ChatbotAdvanced = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -125,7 +125,7 @@ const ChatbotAdvanced = () => {
     addLog('info', 'Envoi du message au chatbot...', { message: inputMessage });
 
     try {
-      const response = await fetch('http://localhost:8001/chatbot/generate', {
+      const response = await fetch('${CHATBOT_BASE_URL}/chatbot/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

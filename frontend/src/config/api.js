@@ -8,7 +8,7 @@ const checkApiHealth = async () => {
     return false;
   }
 };
-
+export const CHATBOT_BASE_URL = import.meta.env.VITE_CHATBOT_URL || 'http://localhost:8001';
 export const API_ENDPOINTS = {
   // Recommandations
   RECOMMENDATIONS: (userId, params = {}) => {

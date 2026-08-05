@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaBrain, FaChartLine, FaSmile, FaFrown, FaMeh, FaExclamationTriangle, FaClock, FaShieldAlt } from 'react-icons/fa';
-
+import { CHATBOT_BASE_URL } from '../config/api';
 const SentimentAnalysisTest = () => {
   const [text, setText] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -26,7 +26,7 @@ const SentimentAnalysisTest = () => {
     setResult(null);
     
     try {
-      const response = await fetch('http://localhost:8001/analyze', {
+      const response = await fetch('${CHATBOT_BASE_URL}/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

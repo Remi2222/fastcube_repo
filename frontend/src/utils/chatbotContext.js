@@ -1,4 +1,4 @@
-
+import { CHATBOT_BASE_URL } from '../config/api';
 export const FASTCUBE_CONTEXT = {
   company: "FASTCUBE",
   domain: "Solutions technologiques innovantes",
@@ -145,7 +145,7 @@ export const buildConversationContext = (history = []) => {
 
 
 export const CHATBOT_CONFIG = {
-  apiUrl: 'http://localhost:8001', 
+  apiUrl: CHATBOT_BASE_URL, 
   endpoints: {
     chat: '/chat',
     health: '/health',
