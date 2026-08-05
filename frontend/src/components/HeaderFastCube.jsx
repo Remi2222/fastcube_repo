@@ -138,7 +138,7 @@ export default function HeaderFastCube() {
       }`}>
         
         {/* Navigation Container */}
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Main Navigation Row - Enhanced Height */}
           <div className="flex items-center justify-between h-18">
@@ -151,8 +151,8 @@ export default function HeaderFastCube() {
               >
                 {/* Enhanced Logo Icon with Animation */}
                 <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-                    <FaRocket className="w-6 h-6 text-white group-hover:animate-bounce" />
+                  <div className="w-9 h-9 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                    <FaRocket className="w-4 h-4 text-white group-hover:animate-bounce" />
                   </div>
                   {/* Glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
@@ -160,10 +160,10 @@ export default function HeaderFastCube() {
                 
                 {/* Enhanced Logo Text with Gradient */}
                 <div className="flex flex-col">
-                  <span className="font-bold text-2xl bg-gradient-to-r from-gray-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-500">
+                  <span className="font-bold text-lg bg-gradient-to-r from-gray-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-500">
                     FastCube
                   </span>
-                  <div className="flex items-center gap-1">
+                  <div className="hidden xl:flex items-center gap-1">
                     <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
                       Innovation & Excellence
                     </span>
@@ -174,8 +174,8 @@ export default function HeaderFastCube() {
             </div>
 
             {/* ===== CENTER: Enhanced Navigation Menu ===== */}
-            <div className="hidden lg:flex items-center justify-center flex-1 px-8">
-              <ul className="flex items-center space-x-2">
+            <div className="hidden xl:flex items-center justify-start flex-1 px-8">
+              <ul className="flex items-center space-x-1">
                 {menuItems.map(item => {
                   const Icon = item.icon;
                   const isItemActive = isActive(item.to);
@@ -183,7 +183,7 @@ export default function HeaderFastCube() {
                     <li key={item.to}>
                       <Link
                         to={item.to}
-                        className={`group relative flex items-center justify-center h-14 px-5 text-sm font-medium transition-all duration-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                        className={`group relative flex items-center justify-center h-14 px-3 text-sm font-medium transition-all duration-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                           isItemActive
                             ? `text-white bg-gradient-to-r ${item.color} shadow-lg transform scale-105`
                             : 'text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gradient-to-r hover:shadow-lg hover:scale-105 dark:hover:text-white'
@@ -214,12 +214,12 @@ export default function HeaderFastCube() {
             </div>
 
             {/* ===== RIGHT: Enhanced Actions Section ===== */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
               
               {/* Enhanced Language Switcher */}
               <button 
                 onClick={() => changeLanguage(lang === 'fr' ? 'en' : 'fr')}
-                className="group relative flex items-center justify-center w-12 h-12 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-all duration-300 hover:scale-110"
+                className="group relative flex items-center justify-center w-9 h-9 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-all duration-300 hover:scale-110"
                 title={lang === 'fr' ? 'Switch to English' : 'Passer au français'}
               >
                 <FaGlobe className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
@@ -243,7 +243,7 @@ export default function HeaderFastCube() {
               {isLoggedIn && (
                 <button 
                   onClick={toggleNotifications}
-                  className="group relative flex items-center justify-center w-12 h-12 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-900/20 rounded-xl transition-all duration-300 hover:scale-110"
+                  className="group relative flex items-center justify-center w-9 h-9 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-900/20 rounded-xl transition-all duration-300 hover:scale-110"
                 >
                   <FaBell className="w-5 h-5 group-hover:animate-pulse" />
                   {unreadCount > 0 && (
@@ -259,7 +259,7 @@ export default function HeaderFastCube() {
               {isLoggedIn && userRole !== 'admin' && (
                 <Link
                   to="/tickets"
-                  className="group relative hidden sm:flex items-center justify-center h-12 px-5 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  className="group relative hidden sm:flex items-center justify-center h-10 px-4 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   <FaTicketAlt className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
                   <span>{getTranslation('tickets') || 'Tickets'}</span>
@@ -274,9 +274,9 @@ export default function HeaderFastCube() {
                   <>
                     <button
                       onClick={handleUserClick}
-                      className="group relative flex items-center justify-center h-12 px-4 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 hover:from-blue-500 hover:to-purple-600 text-gray-700 dark:text-gray-300 hover:text-white text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="group relative flex items-center justify-center h-10 px-3 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 hover:from-blue-500 hover:to-purple-600 text-gray-700 dark:text-gray-300 hover:text-white text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg"
                     >
-                      <FaUserCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                      <FaUserCircle className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
                       <span className="hidden sm:block">
                         {getTranslation('account')}
                       </span>
@@ -361,7 +361,7 @@ export default function HeaderFastCube() {
               <button
                 ref={menuRef}
                 onClick={() => setOpen(!open)}
-                className="group lg:hidden flex items-center justify-center w-12 h-12 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-all duration-300 hover:scale-110"
+                className="group xl:hidden flex items-center justify-center w-9 h-9 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-all duration-300 hover:scale-110"
                 aria-label={getTranslation('menu')}
               >
                 <div className="relative">
@@ -378,7 +378,7 @@ export default function HeaderFastCube() {
 
           {/* ===== ENHANCED MOBILE NAVIGATION ===== */}
           <div
-            className={`lg:hidden transition-all duration-500 ease-in-out overflow-hidden ${
+            className={`xl:hidden transition-all duration-500 ease-in-out overflow-hidden ${
               open
                 ? 'max-h-screen opacity-100 visible'
                 : 'max-h-0 opacity-0 invisible'

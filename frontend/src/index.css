@@ -11,6 +11,9 @@
   width: 100%;
   border-radius: 1rem;
 }
+html {
+  font-size: 81.5%; /* réduit la base de 16px à 14px, donc tout rétrécit d'environ 12.5% */
+}
 
 .leaflet-popup-content-wrapper {
   border-radius: 0.75rem;
