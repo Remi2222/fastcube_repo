@@ -7,14 +7,14 @@ services:
         VITE_API_URL: http://52.201.214.88:5000
     container_name: frontend-app
     ports:
-      - "5173:80"
+      - "80:80"
     depends_on:
       - backend
+    restart: unless-stopped
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
-    restart: always
     ports:
       - "8080:80"
     environment:
@@ -23,6 +23,8 @@ services:
       PMA_PASSWORD: root
     depends_on:
       - mysql
+    restart: unless-stopped
+
   backend:
     build: ./backend
     container_name: backend-app
@@ -33,6 +35,7 @@ services:
         condition: service_healthy
     env_file:
       - ./backend/.env
+    restart: unless-stopped
 
   chatbot:
     build: ./fastcube-chatbot
@@ -43,11 +46,11 @@ services:
       - ./fastcube-chatbot/.env
     depends_on:
       - mysql
-  
+    restart: unless-stopped
+
   mysql:
     image: mysql:8.0
     container_name: mysql-db
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: fastcube
@@ -60,7 +63,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-
+    restart: unless-stopped
 
 volumes:
   mysql_data:
